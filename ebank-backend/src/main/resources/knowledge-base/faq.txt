@@ -1,0 +1,42 @@
+E-Bank FAQ / Knowledge Base
+============================
+
+What is a current account?
+A current account (compte courant) is a bank account meant for everyday transactions.
+It can go into a negative balance up to an authorized overdraft limit (overDraft).
+
+What is a saving account?
+A saving account (compte epargne) is meant for accumulating money over time and earns
+interest at a fixed annual interest rate. Unlike a current account, it typically cannot
+go below a zero balance.
+
+What is a DEBIT operation?
+A DEBIT operation withdraws money from an account, decreasing its balance. On a current
+account, a debit is allowed as long as the resulting balance does not go below the
+negative of the authorized overdraft limit.
+
+What is a CREDIT operation?
+A CREDIT operation deposits money into an account, increasing its balance.
+
+How does a transfer work?
+A transfer between two accounts is implemented as a DEBIT on the source account followed
+by a CREDIT on the destination account, for the same amount.
+
+Who can see an account's operation history?
+Any authenticated user of the back office can view an account's operation history via
+GET /accounts/{accountId}/operations. Each operation records which authenticated user
+performed it.
+
+How do I open a new account?
+An admin or back-office user opens an account for an existing customer via
+POST /accounts/current/{customerId} for a current account, or
+POST /accounts/saving/{customerId} for a saving account.
+
+How do I change my password?
+Authenticated users can change their password via POST /auth/change-password, providing
+their current password and a new password.
+
+What happens if I try to debit more than my authorized balance?
+The operation is rejected with a "balance not sufficient" error. For a current account,
+the authorized balance includes the overdraft limit; for a saving account, it's just the
+current balance.

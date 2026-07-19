@@ -1,0 +1,66 @@
+### These can be run with the IntelliJ HTTP Client, or translated to curl/Postman.
+### Base URL
+@host = http://localhost:8085
+
+### Create a customer
+POST {{host}}/customers
+Content-Type: application/json
+
+{
+  "name": "Sara Bennani",
+  "email": "sara.bennani@ebank.com"
+}
+
+### List customers
+GET {{host}}/customers
+
+### Search customers
+GET {{host}}/customers/search?keyword=Sara
+
+### Get one customer
+GET {{host}}/customers/1
+
+### Create a current account for customer 1
+POST {{host}}/accounts/current/1?initialBalance=5000&overDraft=1000
+
+### Create a saving account for customer 1
+POST {{host}}/accounts/saving/1?initialBalance=8000&interestRate=3.5
+
+### List all accounts
+GET {{host}}/accounts
+
+### Get one account (replace with a real UUID from the list above)
+GET {{host}}/accounts/REPLACE-WITH-ACCOUNT-ID
+
+### Credit an account
+POST {{host}}/accounts/credit
+Content-Type: application/json
+
+{
+  "accountId": "REPLACE-WITH-ACCOUNT-ID",
+  "amount": 500,
+  "description": "Salary deposit"
+}
+
+### Debit an account
+POST {{host}}/accounts/debit
+Content-Type: application/json
+
+{
+  "accountId": "REPLACE-WITH-ACCOUNT-ID",
+  "amount": 200,
+  "description": "ATM withdrawal"
+}
+
+### Transfer between two accounts
+POST {{host}}/accounts/transfer
+Content-Type: application/json
+
+{
+  "accountSource": "REPLACE-WITH-SOURCE-ID",
+  "accountDestination": "REPLACE-WITH-DEST-ID",
+  "amount": 300
+}
+
+### Account operation history
+GET {{host}}/accounts/REPLACE-WITH-ACCOUNT-ID/operations

@@ -1,0 +1,15 @@
+<div class="app-container" style="max-width: 500px;">
+  <h3>New customer</h3>
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card p-4">
+    <div class="mb-3">
+      <label class="form-label">Name</label>
+      <input class="form-control" formControlName="name">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input class="form-control" formControlName="email">
+    </div>
+    <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+  </form>
+</div>

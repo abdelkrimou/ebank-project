@@ -1,0 +1,47 @@
+<div class="app-container">
+  <h3>Dashboard</h3>
+
+  <div class="row mb-4">
+    <div class="col-md-4">
+      <div class="card p-3 text-center">
+        <div class="text-muted">Customers</div>
+        <div class="fs-2">{{ totalCustomers }}</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3 text-center">
+        <div class="text-muted">Accounts</div>
+        <div class="fs-2">{{ totalAccounts }}</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3 text-center">
+        <div class="text-muted">Total balance</div>
+        <div class="fs-2">{{ totalBalance | number:'1.2-2' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card p-3">
+        <h5>Account types</h5>
+        <canvas baseChart
+          [data]="accountTypeChartData"
+          [options]="chartOptions"
+          type="pie">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="card p-3">
+        <h5>Balance by customer</h5>
+        <canvas baseChart
+          [data]="balanceByCustomerChartData"
+          [options]="chartOptions"
+          type="bar">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>

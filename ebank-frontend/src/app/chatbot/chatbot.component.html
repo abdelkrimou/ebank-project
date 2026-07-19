@@ -1,0 +1,18 @@
+<div class="app-container" style="max-width: 700px;">
+  <h3>E-Bank Assistant</h3>
+  <p class="text-muted">This same assistant is also reachable via the Telegram bot.</p>
+
+  <div class="card p-3 mb-3" style="height: 400px; overflow-y: auto;">
+    <div *ngFor="let m of messages" class="mb-2 d-flex" [ngClass]="m.role === 'user' ? 'justify-content-end' : 'justify-content-start'">
+      <div class="p-2 rounded" [ngClass]="m.role === 'user' ? 'bg-primary text-white' : 'bg-light'" style="max-width: 75%;">
+        {{ m.text }}
+      </div>
+    </div>
+    <div *ngIf="loading" class="text-muted small">Assistant is typing...</div>
+  </div>
+
+  <div class="input-group">
+    <input class="form-control" placeholder="Ask a question..." [(ngModel)]="question" (keyup.enter)="send()">
+    <button class="btn btn-primary" (click)="send()" [disabled]="loading">Send</button>
+  </div>
+</div>

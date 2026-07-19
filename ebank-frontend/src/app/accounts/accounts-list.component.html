@@ -1,0 +1,22 @@
+<div class="app-container">
+  <h3>Bank accounts <span class="text-muted small" *ngIf="customerIdFilter">(customer #{{ customerIdFilter }})</span></h3>
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <table class="table table-striped bg-white">
+    <thead>
+      <tr><th>ID</th><th>Type</th><th>Balance</th><th>Status</th><th>Customer</th><th></th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of accounts">
+        <td><code>{{ a.id }}</code></td>
+        <td>{{ a.type }}</td>
+        <td>{{ a.balance | number:'1.2-2' }}</td>
+        <td>{{ a.status }}</td>
+        <td>{{ a.customerDTO?.name }}</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-primary" (click)="openAccount(a.id)">Open</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
